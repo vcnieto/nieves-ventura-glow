@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ArrowDown } from "lucide-react";
-import heroImage from "@/assets/hero-beauty.jpg";
+import { Link } from "react-router-dom";
+import fondoPantalla from "@/assets/FONDO_PANTALLA.png";
+import foto3 from "@/assets/foto3.png";
 
 const Hero = () => {
   return (
@@ -9,8 +11,8 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroImage}
-          alt="Centro de estética Nieves Ventura"
+          src={fondoPantalla}
+          alt="Fondo Nieves Ventura"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
@@ -18,20 +20,22 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Left: Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="text-left"
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-balance">
               Tu bienestar empieza aquí
             </h1>
-            <p className="text-xl md:text-2xl text-white/95 mb-8 max-w-2xl mx-auto text-balance">
+            <p className="text-xl md:text-2xl text-white/95 mb-8 max-w-2xl text-balance">
               Cuidado personal, belleza y relax con la profesionalidad de siempre
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button
                 asChild
                 size="lg"
@@ -53,22 +57,32 @@ const Hero = () => {
                 variant="outline"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-6"
               >
-                <a href="#servicios">Ver Servicios</a>
+                <Link to="/servicios">Ver Servicios</Link>
               </Button>
             </div>
+
+            {/* Blurb */}
+            <p className="text-white/95 mt-10 max-w-xl">
+              Centro de estética profesional en Valencia especializado en tratamientos de belleza,
+              cuidado facial, corporal y bienestar personal.
+            </p>
           </motion.div>
 
-          {/* Featured Card */}
+          {/* Right: Image */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-16 bg-card rounded-2xl shadow-elegant p-6 max-w-2xl mx-auto"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
           >
-            <p className="text-foreground text-lg">
-              Centro de estética profesional en Valencia especializado en tratamientos de belleza,
-              cuidado facial, corporal y bienestar personal
-            </p>
+            <div className="rounded-2xl overflow-hidden shadow-elegant ring-1 ring-white/20 bg-white/10 backdrop-blur-sm">
+              <img
+                src={foto3}
+                alt="Servicios de belleza en Nieves Ventura"
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

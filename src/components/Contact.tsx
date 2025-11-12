@@ -75,9 +75,9 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Dirección</h4>
                     <p className="text-muted-foreground">
-                      Calle Ejemplo, 123
+                      Carrer del Mestre Valls, 40
                       <br />
-                      46000 Valencia, España
+                      Camins al Grau, 46022 València, Valencia
                     </p>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ const Contact = () => {
             {/* Map */}
             <div className="bg-card rounded-2xl shadow-soft overflow-hidden h-64">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079.9380686766354!2d-0.3763157!3d39.4699075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd604f4cf0efb06f%3A0xb4a351011f7f1d39!2sValencia%2C%20Spain!5e0!3m2!1sen!2s!4v1234567890"
+                src="https://www.google.com/maps?q=Carrer%20del%20Mestre%20Valls%2C%2040%2C%20Camins%20al%20Grau%2C%2046022%20Val%C3%A8ncia%2C%20Valencia&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

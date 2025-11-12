@@ -1,23 +1,15 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
-import galleryFacial from "@/assets/gallery-facial.jpg";
-import galleryNails from "@/assets/gallery-nails.jpg";
-import galleryMassage from "@/assets/gallery-massage.jpg";
-import gallerySalon from "@/assets/gallery-salon.jpg";
-import galleryProducts from "@/assets/gallery-products.jpg";
-import galleryReception from "@/assets/gallery-reception.jpg";
+import { motion } from "framer-motion";
+import foto1 from "@/assets/foto1.png";
+import foto2 from "@/assets/foto2.png";
+import foto3 from "@/assets/foto3.png";
+import foto4 from "@/assets/foto4.png";
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
-
-  const images = [
-    { src: galleryFacial, alt: "Tratamiento facial profesional" },
-    { src: galleryNails, alt: "Servicios de manicura y pedicura" },
-    { src: galleryMassage, alt: "Sala de masajes relajantes" },
-    { src: gallerySalon, alt: "Interior del salón de belleza" },
-    { src: galleryProducts, alt: "Productos de belleza premium" },
-    { src: galleryReception, alt: "Recepción del centro de estética" },
+  const row = [
+    { src: foto1, alt: "Galería Nieves Ventura 1" },
+    { src: foto2, alt: "Galería Nieves Ventura 2" },
+    { src: foto3, alt: "Galería Nieves Ventura 3" },
+    { src: foto4, alt: "Galería Nieves Ventura 4" },
   ];
 
   return (
@@ -32,62 +24,26 @@ const Gallery = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Galería</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Descubre nuestras instalaciones y servicios
+            Un vistazo a nuestro espacio y servicios
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {images.map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-soft hover-lift"
-              onClick={() => setSelectedImage(index)}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-            </motion.div>
-          ))}
+        {/* Marquee row */}
+        <div className="marquee max-w-7xl mx-auto">
+          <div className="marquee-content gap-6">
+            {[...row, ...row].map((image, index) => (
+              <div key={index} className="relative w-72 h-72 rounded-2xl overflow-hidden shadow-soft flex-shrink-0">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                  loading={index < 4 ? "eager" : "lazy"}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+              </div>
+            ))}
+          </div>
         </div>
-
-        {/* Lightbox */}
-        <AnimatePresence>
-          {selectedImage !== null && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-              onClick={() => setSelectedImage(null)}
-            >
-              <button
-                className="absolute top-4 right-4 text-white hover:text-primary transition-colors"
-                onClick={() => setSelectedImage(null)}
-                aria-label="Cerrar galería"
-              >
-                <X size={32} />
-              </button>
-              <motion.img
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.8 }}
-                src={images[selectedImage].src}
-                alt={images[selectedImage].alt}
-                className="max-w-full max-h-full object-contain rounded-lg"
-                onClick={(e) => e.stopPropagation()}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </section>
   );

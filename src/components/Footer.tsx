@@ -21,27 +21,27 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#inicio" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
+                <a href="/#inicio" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
                   Inicio
                 </a>
               </li>
               <li>
-                <a href="#servicios" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
+                <a href="/#servicios" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
                   Servicios
                 </a>
               </li>
               <li>
-                <a href="#galeria" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
+                <a href="/#galeria" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
                   Galería
                 </a>
               </li>
               <li>
-                <a href="#opiniones" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
+                <a href="/#opiniones" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
                   Opiniones
                 </a>
               </li>
               <li>
-                <a href="#contacto" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
+                <a href="/#contacto" className="text-accent-foreground/80 hover:text-accent-foreground transition-colors">
                   Contacto
                 </a>
               </li>
@@ -73,9 +73,9 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <MapPin size={18} className="mt-1 flex-shrink-0" />
                 <span className="text-accent-foreground/80">
-                  Calle Ejemplo, 123
+                  Carrer del Mestre Valls, 40
                   <br />
-                  46000 Valencia
+                  Camins al Grau, 46022 València, Valencia
                 </span>
               </li>
             </ul>

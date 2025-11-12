@@ -8,47 +8,49 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Nieves Ventura Color Palette - Warm & Elegant */
-    --background: 30 18% 96%;
-    --foreground: 222.2 84% 4.9%;
+    /* Nieves Ventura Brand Palette */
+    /* Base (crema cálido) #F8F4F1 */
+    --background: 26 33% 96%;
+    --foreground: 19 22% 39%; /* contraste marrón madera as default text */
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 19 22% 39%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 19 22% 39%;
 
-    /* Primary: Soft warm pink #C9A59A */
-    --primary: 14 28% 69%;
+    /* Primary (rosa empolvado) #E8B6B7 */
+    --primary: 353 52% 81%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 14 24% 62%;
+    --primary-hover: 353 52% 74%;
 
-    /* Secondary: Light ivory pink #EDE3E0 */
-    --secondary: 20 22% 90%;
-    --secondary-foreground: 222.2 84% 4.9%;
+    /* Secondary (verde hoja suave) #9DBA97 */
+    --secondary: 110 20% 66%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Muted backgrounds */
-    --muted: 20 22% 90%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted backgrounds derived from base */
+    --muted: 26 25% 92%;
+    --muted-foreground: 19 12% 45%;
 
-    /* Accent: Warm brown #5B463F for footer/contrast */
-    --accent: 18 18% 30%;
-    --accent-foreground: 0 0% 98%;
+    /* Accent (rosa coral) #D97B84 */
+    --accent: 354 55% 67%;
+    --accent-foreground: 0 0% 100%;
 
+    /* Contrast (marrón madera) #7A5C4E */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 20 20% 88%;
-    --input: 20 20% 88%;
-    --ring: 14 28% 69%;
+    --border: 26 20% 88%;
+    --input: 26 20% 88%;
+    --ring: 353 52% 81%;
 
     --radius: 1rem;
 
     /* Custom design tokens */
-    --warm-bg: 30 18% 96%;
-    --hero-overlay: 14 28% 69% / 0.95;
-    --shadow-soft: 0 10px 30px -10px hsl(14 28% 69% / 0.15);
-    --shadow-elegant: 0 20px 60px -15px hsl(14 28% 69% / 0.2);
+    --warm-bg: 26 33% 96%;
+    --hero-overlay: 353 52% 81% / 0.95;
+    --shadow-soft: 0 10px 30px -10px hsl(353 52% 81% / 0.15);
+    --shadow-elegant: 0 20px 60px -15px hsl(353 52% 81% / 0.2);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
@@ -75,5 +77,24 @@ All colors MUST be HSL.
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Marquee animation for infinite scrolling rows */
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee {
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-content {
+    display: flex;
+    width: 200%;
+    animation: marquee-scroll 30s linear infinite;
+  }
+  .marquee:hover .marquee-content {
+    animation-play-state: paused;
   }
 }

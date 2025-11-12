@@ -2,10 +2,20 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const handleHomeClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +26,11 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { href: "#inicio", label: "Inicio" },
-    { href: "#servicios", label: "Servicios" },
-    { href: "#galeria", label: "Galería" },
-    { href: "#opiniones", label: "Opiniones" },
-    { href: "#contacto", label: "Contacto" },
+    { to: "/", label: "Inicio" },
+    { to: "/servicios", label: "Servicios" },
+    { to: "/#galeria", label: "Galería" },
+    { to: "/#opiniones", label: "Opiniones" },
+    { to: "/#contacto", label: "Contacto" },
   ];
 
   return (
@@ -28,30 +38,29 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-card/95 backdrop-blur-md shadow-soft" : "bg-transparent"
+        isScrolled ? "bg-card/95 backdrop-blur-md shadow-soft" : "bg-card/80 backdrop-blur-md shadow-soft"
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.a
-            href="#inicio"
-            className="text-2xl font-bold text-primary"
-            whileHover={{ scale: 1.05 }}
-          >
-            Nieves Ventura
-          </motion.a>
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link to="/" onClick={handleHomeClick} className="text-2xl font-bold text-foreground">
+              Nieves Ventura
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={link.to === "/" ? handleHomeClick : undefined}
                 className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Button
               asChild
@@ -86,14 +95,19 @@ const Header = () => {
             className="md:hidden mt-4 pb-4 space-y-4"
           >
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+              <Link
+                key={link.to}
+                to={link.to}
                 className="block text-foreground hover:text-primary transition-colors duration-300 font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  if (link.to === "/") {
+                    handleHomeClick(e as unknown as React.MouseEvent<HTMLAnchorElement>);
+                  }
+                  setIsMobileMenuOpen(false);
+                }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Button
               asChild
