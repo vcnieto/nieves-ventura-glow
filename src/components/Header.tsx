@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,8 +46,14 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.05 }}>
-            <Link to="/" onClick={handleHomeClick} className="text-2xl font-bold text-foreground">
-              Nieves Ventura
+            <Link to="/" onClick={handleHomeClick} className="flex items-center">
+              <img
+                src={logo}
+                alt="Nieves Ventura"
+                className="h-12 md:h-16 w-auto object-contain"
+                fetchPriority="high"
+                decoding="async"
+              />
             </Link>
           </motion.div>
 
